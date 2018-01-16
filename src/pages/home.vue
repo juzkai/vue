@@ -1,16 +1,42 @@
 <template>
   <div>
     <swiper loop auto :list="demo06_list" :index="demo06_index" @on-index-change="demo06_onIndexChange" :aspect-ratio="300/800" dots-position="center"></swiper>
-    <flexbox :gutter="0">
-      <flexbox-item><div class="flex-demo">1</div></flexbox-item>
-      <flexbox-item><div class="flex-demo">2</div></flexbox-item>
-    </flexbox>
+    <div class="demo-list-box">
+      <flexbox :gutter="0" v-for="(list, index) in components" :key="index">
+        <flexbox-item :span="1/2" v-for="component in list" :key="component.name" class="cbox vux-1px-t vux-tap-active">
+          <div class="vux-1px-r cbox-inner">
+            <!-- <span class="demo-icon demo-icon-big" v-html="component.icon" :style="{color: component.color}"></span> -->
+            <img :src="component.icon" alt="">
+            <p :style="{fontSize: component.name.length > 12 ? '12px' : ''}">{{component.name}}</p>
+          </div>
+        </flexbox-item>
+      </flexbox>
+    </div>
   </div>
 </template>
 
 <script>
 import { Swiper, GroupTitle, SwiperItem, XButton, Divider, Flexbox, FlexboxItem } from 'vux'
-
+import logo from '../assets/logo.png'
+const itemLength = 2
+const componentss = [{
+  name: 'item1', index: 1, icon: logo
+},
+{
+  name: 'item2', index: 2, icon: logo
+},
+{
+  name: 'item3', index: 3, icon: logo
+},
+{
+  name: 'item4', index: 4, icon: logo
+},
+{
+  name: 'item5', index: 5, icon: logo
+},
+{
+  name: 'item6', index: 6, icon: logo
+}]
 const baseList = [{
   url: 'javascript:',
   img: 'https://static.vux.li/demo/1.jpg',
@@ -52,13 +78,38 @@ export default {
     },
     demo06_onIndexChange (index) {
       this.demo06_index = index
+    },
+    go (name) {
+      this.$router.push(`/component/${name}`)
+    },
+    split (array) {
+      let chunks = []
+      let count = Math.ceil(array.length / itemLength)
+      while (count > 0) {
+        chunks.push(array.slice((count - 1) * itemLength, count * itemLength))
+        count--
+      }
+      chunks = chunks.reverse()
+      const lastList = chunks[chunks.length - 1]
+      const lastLength = lastList.length
+      if (lastLength < itemLength) {
+        for (let i = 0; i < itemLength - lastLength; i++) {
+          lastList.push({
+            name: '----',
+            icon: ''
+          })
+        }
+      }
+      return chunks
     }
   },
   data () {
     return {
       demo06_list: urlList,
       demo06_index: 0,
-      swiperItemIndex: 1
+      swiperItemIndex: 1,
+      height: window.innerHeight - 46,
+      components: this.split(componentss)
     }
   }
 }
@@ -70,5 +121,27 @@ export default {
   color: @text-color;
   background-color: @theme-color;
   background-clip: padding-box;
+}
+.cbox {
+  text-align: center;
+}
+.cbox-inner {
+  padding: 15px 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid @border-color;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+.cbox-inner img {
+  width: 35%;
+  // height: 50px;
+}
+.demo-list-box {
+  margin-bottom: 10px;
+  background-color: #fff;
+  width: 100%;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div style="height:100%;">
-    <view-box ref="viewBox">
+    <view-box ref="viewBox" class="bg-color">
      <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;"
       :left-options="leftOptions"
       :right-options="rightOptions"
@@ -62,9 +62,9 @@ export default {
     width: 100%;
     overflow-x: hidden;
   }
- .vux-header{
-  //  background-color: rgb(72, 139, 4) !important;
-  }
+ .bg-color {
+   background-color: @bg-color;
+ }
  .weui-tab__panel {
    padding-top: 46px;
  }
