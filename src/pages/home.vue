@@ -108,7 +108,6 @@ export default {
       demo06_list: urlList,
       demo06_index: 0,
       swiperItemIndex: 1,
-      height: window.innerHeight - 46,
       components: this.split(componentss)
     }
   }
@@ -138,10 +137,7 @@ export default {
   // height: 50px;
 }
 .demo-list-box {
-  margin-bottom: 10px;
   background-color: #fff;
   width: 100%;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
 }
 </style>

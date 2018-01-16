@@ -67,5 +67,7 @@ export default {
  }
  .weui-tab__panel {
    padding-top: 46px;
+   padding-bottom: 0 !important;
+   overflow-x: hidden !important;
  }
 </style>
