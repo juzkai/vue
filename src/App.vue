@@ -33,6 +33,9 @@ export default {
       showMenus: false
     }
   },
+  created () {
+    console.log(this.validator.isMobileNo(12))
+  },
   computed: {
     leftOptions () {
       return {

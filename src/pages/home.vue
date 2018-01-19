@@ -3,7 +3,7 @@
     <swiper loop auto :list="demo06_list" :index="demo06_index" @on-index-change="demo06_onIndexChange" :aspect-ratio="300/800" dots-position="center"></swiper>
     <div class="demo-list-box">
       <flexbox :gutter="0" v-for="(list, index) in components" :key="index">
-        <flexbox-item :span="1/2" v-for="component in list" :key="component.name" class="cbox vux-1px-t vux-tap-active">
+        <flexbox-item :span="1/2" v-for="component in list" :key="component.name" class="cbox vux-1px-t vux-tap-active" @click.native="go(component.name)">
           <div class="vux-1px-r cbox-inner">
             <!-- <span class="demo-icon demo-icon-big" v-html="component.icon" :style="{color: component.color}"></span> -->
             <img :src="component.icon" alt="">
@@ -80,7 +80,18 @@ export default {
       this.demo06_index = index
     },
     go (name) {
-      this.$router.push(`/component/${name}`)
+      console.log(this)
+      // 显示
+      this.$vux.alert.show({
+        title: '123',
+        content: 'Do you agree?',
+        onShow () {
+          console.log('Plugin: I\'m showing')
+        },
+        onHide () {
+          console.log('Plugin: I\'m hiding')
+        }
+      })
     },
     split (array) {
       let chunks = []
