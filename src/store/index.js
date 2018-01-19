@@ -10,6 +10,9 @@ const store = new Vuex.Store({
   getters: {
     isLogin: state => {
       return state.isLogin
+    },
+    loadingShow: state => {
+      console.log(Vue)
     }
   }
 })

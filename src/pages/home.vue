@@ -47,7 +47,7 @@ const baseList = [{
   title: '送你一辆车'
 }, {
   url: 'javascript:',
-  img: 'https://static.vux.li/demo/5.jpg',
+  img: 'https://static.vux.li/demo/3.jpg',
   title: '送你一次旅行',
   fallbackImg: 'https://static.vux.li/demo/3.jpg'
 }]

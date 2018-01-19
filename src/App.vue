@@ -15,6 +15,7 @@
 
 <script>
 import { XHeader, Actionsheet, ButtonTab, ButtonTabItem, ViewBox, Tabbar } from 'vux'
+import { APP_API } from './tools/config'
 export default {
   components: {
     XHeader,
@@ -34,7 +35,10 @@ export default {
     }
   },
   created () {
-    console.log(this.validator.isMobileNo(12))
+    this.http.post(APP_API.getInfo, {id: 1})
+      .then(response => {
+        console.log(response)
+      })
   },
   computed: {
     leftOptions () {
