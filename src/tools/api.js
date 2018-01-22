@@ -1,6 +1,6 @@
 
 import axios from 'axios'
-import { APP_SERVICE_URL_DEV, APP_SERVICE_URL_PRO } from './config'
+import { APP_SERVICE_URL_DEV, APP_SERVICE_URL_PRO, APP_SERVICE_TIMEOUT } from './config'
 // 创建请求实例
 const instance = axios.create()
 
@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'development') {
 // instance.defaults.headers.post['content-Type'] = 'application/json;charset=UTF-8'
 instance.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
 instance.defaults.headers.get['X-Requested-With'] = 'XMLHttpRequest'
-instance.defaults.timeout = 2500
+instance.defaults.timeout = APP_SERVICE_TIMEOUT
 // instance.defaults.responseType = 'json'
 // 添加一个请求拦截器
 instance.interceptors.request.use(config => {

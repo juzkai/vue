@@ -35,7 +35,7 @@ export default {
     }
   },
   created () {
-    this.http.post(APP_API.getInfo, {id: 1})
+    this.http.post(APP_API.getInfo, {id: 4})
       .then(response => {
         console.log(response)
       })
