@@ -6,3 +6,4 @@ export const APP_SERVICE_TIMEOUT = 3000
 export const APP_API = {
   getInfo: 'juzkai/user/getinfo'
 }
+export const APP_TITLE = '温馨提示'

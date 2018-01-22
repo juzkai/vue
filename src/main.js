@@ -16,7 +16,7 @@ Vue.config.productionTip = false
 Vue.prototype.validator = validator
 Vue.prototype.http = axios
 /* eslint-disable no-new */
-window.vm = new Vue({
+new Vue({
   el: '#app',
   store,
   router,

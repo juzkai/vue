@@ -1,5 +1,6 @@
 
 import axios from 'axios'
+import store from '../store/index'
 import { APP_SERVICE_URL_DEV, APP_SERVICE_URL_PRO, APP_SERVICE_TIMEOUT } from './config'
 // 创建请求实例
 const instance = axios.create()
@@ -21,19 +22,17 @@ instance.interceptors.request.use(config => {
   // 在请求发出之前进行一些操作
   // config.headers.Accept = 'application/json'
   // 显示
-  window.vm.$vux.loading.show({
-    text: 'Loading'
-  })
+  store.commit('updateLoadingStatus', {isLoading: true})
   return config
 }, error => {
   // request error
-  window.vm.$vux.loading.hide()
+  store.commit('updateLoadingStatus', {isLoading: false})
   return Promise.reject(error)
 })
 
 // 添加一个响应拦截器
 instance.interceptors.response.use(response => {
-  window.vm.$vux.loading.hide()
+  store.commit('updateLoadingStatus', {isLoading: false})
   // 在这里对返回的数据进行处理
   let status = response.status
   let data = response.data
@@ -44,7 +43,7 @@ instance.interceptors.response.use(response => {
   }
 }, error => {
   // response error
-  window.vm.$vux.loading.hide()
+  store.commit('updateLoadingStatus', {isLoading: false})
   return Promise.reject(error)
 })
 

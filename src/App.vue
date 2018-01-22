@@ -10,11 +10,13 @@
      <router-view />
      <!-- <tabbar slot="bottom"></tabbar> -->
    </view-box>
+   <loading v-model="isLoading"></loading>
   </div>
 </template>
 
 <script>
-import { XHeader, Actionsheet, ButtonTab, ButtonTabItem, ViewBox, Tabbar } from 'vux'
+import { XHeader, Actionsheet, ButtonTab, ButtonTabItem, ViewBox, Tabbar, Loading } from 'vux'
+import { mapState } from 'vuex'
 import { APP_API } from './tools/config'
 export default {
   components: {
@@ -23,7 +25,8 @@ export default {
     ButtonTab,
     ButtonTabItem,
     ViewBox,
-    Tabbar
+    Tabbar,
+    Loading
   },
   data () {
     return {
@@ -41,6 +44,9 @@ export default {
       })
   },
   computed: {
+    ...mapState({
+      isLoading: state => state.vux.isLoading
+    }),
     leftOptions () {
       return {
         showBack: this.$route.path !== '/'
