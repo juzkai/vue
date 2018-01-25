@@ -80,18 +80,19 @@ export default {
       this.demo06_index = index
     },
     go (name) {
-      console.log(this)
+      let _this = this
       // 显示
-      this.$vux.alert.show({
-        title: '123',
-        content: 'Do you agree?',
-        onShow () {
-          console.log('Plugin: I\'m showing')
-        },
-        onHide () {
-          console.log('Plugin: I\'m hiding')
-        }
-      })
+      // this.$vux.alert.show({
+      //   title: '123',
+      //   content: 'Do you agree?',
+      //   onShow () {
+      //     console.log('Plugin: I\'m showing')
+      //   },
+      //   onHide () {
+      //     _this.$router.push('/item')
+      //   }
+      // })
+      _this.$router.push('/item')
     },
     split (array) {
       let chunks = []

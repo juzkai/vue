@@ -7,10 +7,14 @@
       :title="title"
       :transition="headerTransition"
      ></x-header>
-     <router-view />
+     <transition
+        @after-enter="$vux.bus && $vux.bus.$emit('vux:after-view-enter')"
+        :name="viewTransition" :css="!!direction">
+          <router-view class="router-view"></router-view>
+      </transition>
      <!-- <tabbar slot="bottom"></tabbar> -->
    </view-box>
-   <loading v-model="isLoading"></loading>
+   <loading v-model="isLoading" ></loading>
   </div>
 </template>
 
@@ -45,11 +49,13 @@ export default {
   },
   computed: {
     ...mapState({
-      isLoading: state => state.vux.isLoading
+      isLoading: state => state.vux.isLoading,
+      direction: state => state.vux.direction
     }),
     leftOptions () {
       return {
-        showBack: this.$route.path !== '/'
+        showBack: this.$route.path !== '/',
+        backText: ''
       }
     },
     rightOptions () {
@@ -63,6 +69,10 @@ export default {
     },
     title () {
       return this.$route.name || ''
+    },
+    viewTransition () {
+      if (!this.direction) return ''
+      return 'vux-pop-' + (this.direction === 'forward' ? 'in' : 'out')
     }
   }
 }
@@ -82,5 +92,37 @@ export default {
    padding-top: 46px;
    padding-bottom: 0 !important;
    overflow-x: hidden !important;
+ }
+ .router-view {
+   width: 100%;
+   top: 46px;
+ }
+ .vux-pop-out-enter-active,
+ .vux-pop-out-leave-active,
+ .vux-pop-in-enter-active,
+ .vux-pop-in-leave-active {
+   will-change: transform;
+   transition: all 500ms;
+   height: 100%;
+   top: 46px;
+   position: absolute;
+   backface-visibility: hidden;
+   perspective: 1000;
+ }
+ .vux-pop-out-enter {
+   opacity: 0;
+   transform: translate3d(-100%, 0, 0);
+ }
+ .vux-pop-out-leave-active {
+   opacity: 0;
+   transform: translate3d(100%, 0, 0);
+}
+ .vux-pop-in-enter {
+   opacity: 0;
+   transform: translate3d(100%, 0, 0);
+ }
+ .vux-pop-in-leave-active {
+   opacity: 0;
+   transform: translate3d(-100%, 0, 0);
  }
 </style>
