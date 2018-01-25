@@ -92,7 +92,7 @@ export default {
       //     _this.$router.push('/item')
       //   }
       // })
-      _this.$router.push('/item')
+      _this.$router.push('/item/123/abc')
     },
     split (array) {
       let chunks = []
