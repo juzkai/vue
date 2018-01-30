@@ -6,8 +6,8 @@
     <x-button :gradients="['#FF2719', '#FF61AD']">iOS Gradients</x-button>
     <x-button :gradients="['#6F1BFE', '#9479DF']">iOS Gradients</x-button>
     <x-button :gradients="['#FF5E3A', '#FF9500']">iOS Gradients</x-button>
-    <x-button type="warn">reset</x-button>
-    <x-button>theme default</x-button>
+    <x-button type="warn" disabled>reset</x-button>
+    <x-button disabled>theme default</x-button>
   </div>
 </template>
 <script>
