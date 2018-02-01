@@ -8,6 +8,7 @@
     <x-button :gradients="['#FF5E3A', '#FF9500']">iOS Gradients</x-button>
     <x-button type="warn" disabled>reset</x-button>
     <x-button disabled>theme default</x-button>
+    <x-button @click.native="about()">go to about page</x-button>
   </div>
 </template>
 <script>
@@ -20,6 +21,12 @@ export default {
   created () {
     console.log(this.$route.params.id)
     console.log(this.$route.params.name)
+  },
+  methods: {
+    about () {
+      console.log(this.$route)
+      this.$router.push('/about/12')
+    }
   }
 }
 </script>

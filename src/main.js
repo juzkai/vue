@@ -14,6 +14,11 @@ Vue.config.productionTip = false
 
 Vue.prototype.validator = validator
 Vue.prototype.http = axios
+
+Vue.component('my-component', {
+  template: '<div>component</div>'
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

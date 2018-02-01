@@ -1,26 +1,38 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HomePage from '../pages/home'
-import ItemPage from '../pages/item.vue'
 import store from '../store/index'
+
 Vue.use(Router)
+
 const history = window.sessionStorage
 history.clear()
 let historyCount = history.getItem('count') * 1 || 0
 history.setItem('/', 0)
 let isPush = false
 let endTime = Date.now()
+
 const router = new Router({
   routes: [
     {
       path: '/',
       name: '首页',
-      component: HomePage
+      component: resolve => {
+        require(['../pages/home.vue'], resolve)
+      }
     },
     {
       path: '/item/:id/:name',
-      name: 'item',
-      component: ItemPage
+      name: '列表',
+      component: resolve => {
+        require(['../pages/item.vue'], resolve)
+      }
+    },
+    {
+      path: '/about/:id',
+      name: '关于',
+      component: resolve => {
+        require(['../pages/about.vue'], resolve)
+      }
     }
   ]
 })

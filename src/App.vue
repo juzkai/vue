@@ -10,7 +10,9 @@
      <transition
         @after-enter="$vux.bus && $vux.bus.$emit('vux:after-view-enter')"
         :name="viewTransition" :css="!!direction">
+        <keep-alive>
           <router-view class="router-view"></router-view>
+        </keep-alive>
       </transition>
      <!-- <tabbar slot="bottom"></tabbar> -->
    </view-box>
