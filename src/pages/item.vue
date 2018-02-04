@@ -1,11 +1,11 @@
 <template>
   <div>
     <divider>default</divider>
-    <x-button :gradients="['#1D62F0', '#19D5FD']">iOS Gradients</x-button>
-    <x-button :gradients="['#A644FF', '#FC5BC4']">iOS Gradients</x-button>
-    <x-button :gradients="['#FF2719', '#FF61AD']">iOS Gradients</x-button>
-    <x-button :gradients="['#6F1BFE', '#9479DF']">iOS Gradients</x-button>
-    <x-button :gradients="['#FF5E3A', '#FF9500']">iOS Gradients</x-button>
+    <x-button :gradients="['#1D62F0', '#19D5FD']" @click.native="alert()">alert test</x-button>
+    <x-button :gradients="['#A644FF', '#FC5BC4']" @click.native="toastMsg()">toast test</x-button>
+    <x-button :gradients="['#FF2719', '#FF61AD']" @click.native="toastIcon('success')">toast with success icon</x-button>
+    <x-button :gradients="['#6F1BFE', '#9479DF']" @click.native="toastIcon('cancel')">toast with cancel icon</x-button>
+    <x-button :gradients="['#FF5E3A', '#FF9500']" @click.native="toastIcon('warn')">toast with warn icon</x-button>
     <x-button type="warn" disabled>reset</x-button>
     <x-button disabled>theme default</x-button>
     <x-button @click.native="about()">go to about page</x-button>
@@ -29,6 +29,15 @@ export default {
   methods: {
     about () {
       this.$router.push('/about/12')
+    },
+    alert () {
+      this.dialog.alertMsg('alert text', () => console.log('alert with text has hidden'))
+    },
+    toastMsg () {
+      this.dialog.toastMsg('toast text', () => console.log('toast with text has hidden'))
+    },
+    toastIcon (type) {
+      this.dialog.toastIcon(type, () => console.log('toast with ' + type + ' icon has hidden'))
     }
   }
 }

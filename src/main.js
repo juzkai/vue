@@ -7,13 +7,14 @@ import router from './router'
 import store from './store/index'
 import validator from './tools/validator'
 import axios from './tools/api'
-
+import dialog from './tools/dialog'
 Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)
 Vue.config.productionTip = false
 
 Vue.prototype.validator = validator
 Vue.prototype.http = axios
+Vue.prototype.dialog = dialog
 
 Vue.component('my-component', {
   template: '<div>component</div>'
