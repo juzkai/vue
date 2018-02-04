@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store/index'
+import {APP_ROUTE} from './router'
 
 Vue.use(Router)
 
@@ -12,29 +13,7 @@ let isPush = false
 let endTime = Date.now()
 
 const router = new Router({
-  routes: [
-    {
-      path: '/',
-      name: '首页',
-      component: resolve => {
-        require(['../pages/home.vue'], resolve)
-      }
-    },
-    {
-      path: '/item/:id/:name',
-      name: '列表',
-      component: resolve => {
-        require(['../pages/item.vue'], resolve)
-      }
-    },
-    {
-      path: '/about/:id',
-      name: '关于',
-      component: resolve => {
-        require(['../pages/about.vue'], resolve)
-      }
-    }
-  ]
+  routes: APP_ROUTE
 })
 
 router.beforeEach((to, from, next) => {

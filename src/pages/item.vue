@@ -19,12 +19,15 @@ export default {
     Divider
   },
   created () {
+    // 首次请求写到这里
+  },
+  activated () {
+    // 每次都要请求的写到这里
     console.log(this.$route.params.id)
     console.log(this.$route.params.name)
   },
   methods: {
     about () {
-      console.log(this.$route)
       this.$router.push('/about/12')
     }
   }

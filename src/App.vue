@@ -10,9 +10,10 @@
      <transition
         @after-enter="$vux.bus && $vux.bus.$emit('vux:after-view-enter')"
         :name="viewTransition" :css="!!direction">
-        <keep-alive>
-          <router-view class="router-view"></router-view>
-        </keep-alive>
+          <!-- 注意使用了keep-alive缓存全部页面 对于首次请求写到 created里面 对于每次进入页面都要请求的 写到 activated 里面 -->
+          <keep-alive>
+            <router-view class="router-view"></router-view>
+          </keep-alive>
       </transition>
      <!-- <tabbar slot="bottom"></tabbar> -->
    </view-box>
@@ -70,7 +71,8 @@ export default {
       return this.direction === 'forward' ? 'vux-header-fade-in-right' : 'vux-header-fade-in-left'
     },
     title () {
-      return this.$route.name || ''
+      document.title = this.$route.name
+      return this.$route.name
     },
     viewTransition () {
       if (!this.direction) return ''
