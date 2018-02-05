@@ -17,14 +17,13 @@
       </transition>
      <!-- <tabbar slot="bottom"></tabbar> -->
    </view-box>
-   <loading v-model="isLoading" ></loading>
+   <loading v-model="isLoading" text="请稍候" ></loading>
   </div>
 </template>
 
 <script>
 import { XHeader, Actionsheet, ButtonTab, ButtonTabItem, ViewBox, Tabbar, Loading } from 'vux'
 import { mapState } from 'vuex'
-import { APP_API } from './tools/config'
 export default {
   components: {
     XHeader,
@@ -45,10 +44,6 @@ export default {
     }
   },
   created () {
-    this.http.post(APP_API.getInfo, {id: 4})
-      .then(response => {
-        console.log(response)
-      })
   },
   computed: {
     ...mapState({
@@ -96,6 +91,12 @@ export default {
    padding-top: 46px;
    padding-bottom: 0 !important;
    overflow-x: hidden !important;
+ }
+ .weui-dialog {
+   border-radius: 13px;
+ }
+ .weui-dialog__hd {
+   padding: 1.0em 1.6em 0.5em;
  }
  .router-view {
    width: 100%;

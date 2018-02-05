@@ -21,7 +21,7 @@ export default {
     let def = {
       time: DIALOG_DURATION, // 显示时间
       type: 'text', // 类型，可选值 success, warn, cancel, text
-      position: 'middle', // 显示位置，可选值 default, top, middle, bottom
+      position: 'top', // 显示位置，可选值 default, top, middle, bottom
       width: '90%', // 宽度
       isShowMask: true // 是否显示遮罩，如果显示，用户将不能点击页面上其他元素
     }
@@ -65,6 +65,35 @@ export default {
       width: def.width,
       isShowMask: def.isShowMask,
       onHide: ok || type
+    })
+  },
+  confirmMsg: (msg, ok, cancel) => {
+    Vue.$vux.confirm.show({
+      title: APP_TITLE,
+      theme: 'ios', // 弹窗风格，可以是ios或android
+      content: msg || '', // 弹窗内容，作为slot默认内容，可以是html片段，如果使用slot该字段会失效
+      onConfirm: ok || '', // 点击确定按钮时触
+      onCancel: cancel || '' // 点击取消按钮时触发
+    })
+  },
+  promptMsg: (msg, ok, cancel) => {
+    let value = ''
+    let placeholder = ''
+    if (typeof msg === 'string') {
+      placeholder = msg
+    }
+    if (typeof msg === 'object') {
+      value = msg.value
+      placeholder = msg.msg
+    }
+    Vue.$vux.confirm.prompt(placeholder, {
+      title: APP_TITLE,
+      theme: 'ios', // 弹窗风格，可以是ios或android
+      onConfirm: ok || '', // 点击确定按钮时触
+      onCancel: cancel || '', // 点击取消按钮时触发
+      onShow: () => {
+        Vue.$vux.confirm.setInputValue(value)
+      }
     })
   }
 }

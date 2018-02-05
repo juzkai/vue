@@ -6,13 +6,16 @@
     <x-button :gradients="['#FF2719', '#FF61AD']" @click.native="toastIcon('success')">toast with success icon</x-button>
     <x-button :gradients="['#6F1BFE', '#9479DF']" @click.native="toastIcon('cancel')">toast with cancel icon</x-button>
     <x-button :gradients="['#FF5E3A', '#FF9500']" @click.native="toastIcon('warn')">toast with warn icon</x-button>
+    <x-button :gradients="['#FF5E3A', '#FF9500']" @click.native="promptMsg('warn')">prompt</x-button>
     <x-button type="warn" disabled>reset</x-button>
     <x-button disabled>theme default</x-button>
     <x-button @click.native="about()">go to about page</x-button>
+    <x-button @click.native="getData()">请求数据</x-button>
   </div>
 </template>
 <script>
 import { XButton, Divider } from 'vux'
+import {APP_API} from '../tools/config'
 export default {
   components: {
     XButton,
@@ -28,7 +31,8 @@ export default {
   },
   methods: {
     about () {
-      this.$router.push('/about/12')
+      this.dialog.confirmMsg('是否跳转?', () => this.$router.push('/about/12'))
+      // this.$router.push('/about/12')
     },
     alert () {
       this.dialog.alertMsg('alert text', () => console.log('alert with text has hidden'))
@@ -38,6 +42,16 @@ export default {
     },
     toastIcon (type) {
       this.dialog.toastIcon(type, () => console.log('toast with ' + type + ' icon has hidden'))
+    },
+    getData () {
+      this.http.post(APP_API.getInfo, {id: 1})
+        .then(response => {
+          console.log(response)
+        })
+    },
+    promptMsg () {
+      this.dialog.promptMsg('placeholder', (value) => console.log(value))
+      // this.dialog.promptMsg({value: 123, msg: 'placeholder'}, (value) => console.log(value))
     }
   }
 }
