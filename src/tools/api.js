@@ -1,7 +1,8 @@
 
 import axios from 'axios'
 import store from '../store/index'
-import { APP_SERVICE_URL_DEV, APP_SERVICE_URL_PRO, APP_SERVICE_TIMEOUT } from './config'
+import { APP_SERVICE_URL_DEV, APP_SERVICE_URL_PRO, APP_SERVICE_TIMEOUT, APP_TITLE } from './config'
+import Vue from 'vue'
 // 创建请求实例
 const instance = axios.create()
 
@@ -44,6 +45,11 @@ instance.interceptors.response.use(response => {
 }, error => {
   // response error
   store.commit('updateLoadingStatus', {isLoading: false})
+  Vue.$vux.toast.show({
+    title: APP_TITLE,
+    type: 'warn',
+    text: '系统异常'
+  })
   return Promise.reject(error)
 })
 

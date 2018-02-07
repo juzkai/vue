@@ -12,7 +12,6 @@
         </flexbox-item>
       </flexbox>
     </div>
-    <my-component></my-component>
   </div>
 </template>
 

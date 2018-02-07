@@ -48,6 +48,10 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to, from) => {
+  // 页面切换关闭提示框，主要针对浏览器及安卓回退行为
+  Vue.$vux.alert.hide()
+  Vue.$vux.confirm.hide()
+  Vue.$vux.toast.hide()
   store.commit('updateLoadingStatus', {isLoading: false})
 })
 

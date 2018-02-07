@@ -22,7 +22,7 @@ export default {
       time: DIALOG_DURATION, // 显示时间
       type: 'text', // 类型，可选值 success, warn, cancel, text
       position: 'top', // 显示位置，可选值 default, top, middle, bottom
-      width: '90%', // 宽度
+      // width: '90%', // 宽度
       isShowMask: true // 是否显示遮罩，如果显示，用户将不能点击页面上其他元素
     }
     if (typeof option === 'number') {

@@ -50,7 +50,11 @@ export default {
         })
     },
     promptMsg () {
-      this.dialog.promptMsg('placeholder', (value) => console.log(value))
+      this.dialog.promptMsg('请输入手机号码', (value) => {
+        if (!this.validator.isMobileNo(value)) {
+          this.dialog.alertMsg('请输入正确的手机号')
+        }
+      })
       // this.dialog.promptMsg({value: 123, msg: 'placeholder'}, (value) => console.log(value))
     }
   }

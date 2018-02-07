@@ -83,6 +83,9 @@ export default {
     height: 100%;
     width: 100%;
     overflow-x: hidden;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none
   }
  .bg-color {
    background-color: @bg-color;
@@ -97,6 +100,9 @@ export default {
  }
  .weui-dialog__hd {
    padding: 1.0em 1.6em 0.5em;
+ }
+ .weui-dialog__bd {
+   min-height: 30px;
  }
  .router-view {
    width: 100%;

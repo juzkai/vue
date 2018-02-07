@@ -19,10 +19,6 @@ Vue.prototype.validator = validator
 Vue.prototype.http = axios
 Vue.prototype.dialog = dialog
 
-Vue.component('my-component', {
-  template: '<div>component</div>'
-})
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
