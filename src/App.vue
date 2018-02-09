@@ -1,16 +1,19 @@
 <template>
   <div style="height:100%;">
-    <view-box ref="viewBox" class="bg-color">
-     <!-- <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;"
+    <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;"
       :left-options="leftOptions"
       :title="title"
       :transition="headerTransition"
      >
-       <a slot="right" style="position: relative;top: -4px;" v-if="rightOptions.showMore">
+       <a slot="right" style="position: relative;top: -4px;" v-if="$route.path === '/'">
         <img src="../static/img/mailbox.png" alt="">
-        <badge class="badge-icon" text="1"></badge>
+        <badge class="badge-icon" text="8"></badge>
       </a>
-     </x-header> -->
+      <a slot="right" style="position: relative;top: -4px;" v-if="$route.path !== '/'" @click="toHome()">
+        首页
+      </a>
+     </x-header>
+    <view-box ref="viewBox" class="bg-color">
      <transition
         @after-enter="$vux.bus && $vux.bus.$emit('vux:after-view-enter')"
         :name="viewTransition" :css="!!direction">
@@ -26,7 +29,7 @@
 </template>
 
 <script>
-import { XHeader, Actionsheet, ButtonTab, ButtonTabItem, ViewBox, Tabbar, Loading } from 'vux'
+import { XHeader, Actionsheet, ButtonTab, ButtonTabItem, ViewBox, Tabbar, Loading, Badge } from 'vux'
 import { mapState } from 'vuex'
 export default {
   components: {
@@ -36,7 +39,8 @@ export default {
     ButtonTabItem,
     ViewBox,
     Tabbar,
-    Loading
+    Loading,
+    Badge
   },
   data () {
     return {
@@ -48,7 +52,6 @@ export default {
     }
   },
   created () {
-    // document.title = '项目'
   },
   computed: {
     ...mapState({
@@ -78,6 +81,15 @@ export default {
       if (!this.direction) return ''
       return 'vux-pop-' + (this.direction === 'forward' ? 'in' : 'out')
     }
+  },
+  methods: {
+    toHome () {
+      const path = this.$route.path
+      const history = window.sessionStorage
+      const toIndex = history.getItem(path)
+      // history.clear()
+      this.$router.go(toIndex * -1)
+    }
   }
 }
 </script>
@@ -90,13 +102,17 @@ export default {
     overflow-x: hidden;
     user-select: none;
     -moz-user-select: none;
-    -webkit-user-select: none
+    -webkit-user-select: none;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
   }
  .bg-color {
    background-color: @bg-color;
+   -webkit-overflow-scrolling: touch; // ios5+
+   -ms-overflow-style: -ms-autohiding-scrollbar;
  }
  .weui-tab__panel {
-  //  padding-top: 46px;
+   padding-top: 46px;
    padding-bottom: 0 !important;
    overflow-x: hidden !important;
  }
@@ -111,7 +127,7 @@ export default {
  }
  .router-view {
    width: 100%;
-  //  top: 46px;
+   top: 46px;
  }
  .vux-pop-out-enter-active,
  .vux-pop-out-leave-active,
@@ -120,7 +136,7 @@ export default {
    will-change: transform;
    transition: all 500ms;
    height: 100%;
-  //  top: 46px;
+   top: 46px;
    position: absolute;
    backface-visibility: hidden;
    perspective: 1000;

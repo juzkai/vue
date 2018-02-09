@@ -1,6 +1,5 @@
 <template>
   <div>
-    <x-header :left-options="{backText: ''}">列表</x-header>
     <divider>default</divider>
     <x-button :gradients="['#1D62F0', '#19D5FD']" @click.native="alert()">alert test</x-button>
     <x-button :gradients="['#A644FF', '#FC5BC4']" @click.native="toastMsg()">toast test</x-button>
@@ -15,13 +14,12 @@
   </div>
 </template>
 <script>
-import { XButton, Divider, XHeader } from 'vux'
+import { XButton, Divider } from 'vux'
 import {APP_API} from '../tools/config'
 export default {
   components: {
     XButton,
-    Divider,
-    XHeader
+    Divider
   },
   created () {
     // 首次请求写到这里

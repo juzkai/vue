@@ -6,7 +6,7 @@ import {APP_ROUTE} from './router'
 Vue.use(Router)
 
 const history = window.sessionStorage
-history.clear()
+// history.clear()
 let historyCount = history.getItem('count') * 1 || 0
 history.setItem('/', 0)
 let isPush = false
@@ -20,7 +20,9 @@ router.beforeEach((to, from, next) => {
   store.commit('updateLoadingStatus', {isLoading: true})
   const toIndex = history.getItem(to.path)
   const fromIndex = history.getItem(from.path)
-
+  if (toIndex === 0 && historyCount !== 0) {
+    history.clear()
+  }
   if (toIndex) {
     if (!fromIndex || parseInt(toIndex, 10) > parseInt(fromIndex, 10) || (toIndex === '0' && fromIndex === '0')) {
       store.commit('updateDirection', {direction: 'forward'})
