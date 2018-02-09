@@ -1,12 +1,16 @@
 <template>
   <div style="height:100%;">
     <view-box ref="viewBox" class="bg-color">
-     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;"
+     <!-- <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;"
       :left-options="leftOptions"
-      :right-options="rightOptions"
       :title="title"
       :transition="headerTransition"
-     ></x-header>
+     >
+       <a slot="right" style="position: relative;top: -4px;" v-if="rightOptions.showMore">
+        <img src="../static/img/mailbox.png" alt="">
+        <badge class="badge-icon" text="1"></badge>
+      </a>
+     </x-header> -->
      <transition
         @after-enter="$vux.bus && $vux.bus.$emit('vux:after-view-enter')"
         :name="viewTransition" :css="!!direction">
@@ -44,6 +48,7 @@ export default {
     }
   },
   created () {
+    // document.title = '项目'
   },
   computed: {
     ...mapState({
@@ -58,7 +63,7 @@ export default {
     },
     rightOptions () {
       return {
-        showMore: false
+        showMore: this.$route.path === '/'
       }
     },
     headerTransition () {
@@ -91,7 +96,7 @@ export default {
    background-color: @bg-color;
  }
  .weui-tab__panel {
-   padding-top: 46px;
+  //  padding-top: 46px;
    padding-bottom: 0 !important;
    overflow-x: hidden !important;
  }
@@ -106,7 +111,7 @@ export default {
  }
  .router-view {
    width: 100%;
-   top: 46px;
+  //  top: 46px;
  }
  .vux-pop-out-enter-active,
  .vux-pop-out-leave-active,
@@ -115,7 +120,7 @@ export default {
    will-change: transform;
    transition: all 500ms;
    height: 100%;
-   top: 46px;
+  //  top: 46px;
    position: absolute;
    backface-visibility: hidden;
    perspective: 1000;
@@ -135,5 +140,10 @@ export default {
  .vux-pop-in-leave-active {
    opacity: 0;
    transform: translate3d(-100%, 0, 0);
+ }
+ .badge-icon {
+   position: absolute;
+   top: 0px;
+   left: 70%;
  }
 </style>

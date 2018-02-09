@@ -1,13 +1,21 @@
 <template>
-  <div>
-  </div>
+  <group>
+    <cell title="title" value="value" is-link></cell>
+  </group>
 </template>
 
 <script>
-import { XHeader } from 'vux'
+import { Group, Cell } from 'vux'
 export default {
   components: {
-    XHeader
+    Cell,
+    Group
+  },
+  props: {
+    title: {
+      type: String,
+      required: true
+    }
   },
   data () {
     return {

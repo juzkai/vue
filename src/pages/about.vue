@@ -1,5 +1,6 @@
 <template>
   <div>
+    <x-header :left-options="{backText: ''}">关于</x-header>
     <divider>default</divider>
     <x-button :gradients="['#1D62F0', '#19D5FD']">iOS Gradients</x-button>
     <x-button :gradients="['#1D62F0', '#19D5FD']" @click.native="backOne()">回退上一页</x-button>
@@ -7,11 +8,12 @@
   </div>
 </template>
 <script>
-import { XButton, Divider } from 'vux'
+import { XButton, Divider, XHeader } from 'vux'
 export default {
   components: {
     XButton,
-    Divider
+    Divider,
+    XHeader
   },
   created () {
     console.log(this.$route.params.id)

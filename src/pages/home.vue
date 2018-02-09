@@ -1,5 +1,12 @@
 <template>
   <div>
+    <x-header :left-options="{backText: '', showBack: false}">
+        首页
+       <a slot="right" style="position: relative;top: -4px;">
+        <img src="../../static/img/mailbox.png" alt="">
+        <badge class="badge-icon" text="1"></badge>
+      </a>
+    </x-header>
     <swiper loop auto :list="demo06_list" :index="demo06_index" @on-index-change="demo06_onIndexChange" :aspect-ratio="300/800" dots-position="center"></swiper>
     <div class="demo-list-box">
       <flexbox :gutter="0" v-for="(list, index) in components" :key="index">
@@ -16,7 +23,7 @@
 </template>
 
 <script>
-import { Swiper, GroupTitle, SwiperItem, XButton, Divider, Flexbox, FlexboxItem } from 'vux'
+import { Swiper, GroupTitle, SwiperItem, XButton, Divider, Flexbox, FlexboxItem, XHeader, Badge } from 'vux'
 import logo from '../assets/logo.png'
 const itemLength = 2
 const componentss = [{
@@ -67,7 +74,9 @@ export default {
     XButton,
     Divider,
     Flexbox,
-    FlexboxItem
+    FlexboxItem,
+    XHeader,
+    Badge
   },
   ready () {
 
