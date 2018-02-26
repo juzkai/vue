@@ -1,7 +1,7 @@
 <template>
   <div>
     <divider>default</divider>
-    <x-button :gradients="['#1D62F0', '#19D5FD']" @click.native="goItem()">to new item view</x-button>
+    <x-button :gradients="['#1D62F0', '#19D5FD']" @click.native="goItem()">to form view</x-button>
     <x-button :gradients="['#1D62F0', '#19D5FD']" @click.native="backOne()">回退上一页</x-button>
     <x-button :gradients="['#1D62F0', '#19D5FD']" @click.native="backTwo()">回退两页</x-button>
   </div>
@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     goItem () {
-      this.$router.push('/item/456/abc')
+      this.$router.push('/form')
     },
     backOne () {
       // this.$router.go(-1)

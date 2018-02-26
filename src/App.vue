@@ -9,7 +9,7 @@
         <img src="../static/img/mailbox.png" alt="">
         <badge class="badge-icon" text="8"></badge>
       </a>
-      <a slot="right" style="position: relative;top: -4px;" v-if="$route.path !== '/'" @click="toHome()">
+      <a slot="right" style="position: relative;top: -2px;" v-if="$route.path !== '/'" @click="toHome()">
         首页
       </a>
      </x-header>

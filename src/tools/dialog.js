@@ -13,7 +13,7 @@ export default {
       //   return ok ? ok() : ''
       // },
       onHide () {
-        return ok() || ''
+        return ok ? ok() : ''
       }
     })
   },
