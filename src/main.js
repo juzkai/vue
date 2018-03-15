@@ -8,6 +8,8 @@ import store from './store/index'
 import validator from './tools/validator'
 import axios from './tools/api'
 import dialog from './tools/dialog'
+import './tools/filter'
+import './tools/directive'
 
 Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)
