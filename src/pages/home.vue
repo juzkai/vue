@@ -12,6 +12,9 @@
         </flexbox-item>
       </flexbox>
     </div>
+
+    <div class="testDiv">123</div>
+
   </div>
 </template>
 
@@ -126,7 +129,8 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
+@import '../styles/common.css';
 .flex-demo {
   text-align: center;
   color: @text-color;
