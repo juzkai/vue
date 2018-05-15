@@ -1,5 +1,5 @@
 <template>
-  <div id="scrollable" style="height:100%;">
+  <div style="height:100%;">
     <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;"
       :left-options="leftOptions"
       :title="title"
@@ -13,7 +13,7 @@
         首页
       </a>
      </x-header>
-    <view-box ref="viewBox" class="bg-color">
+    <view-box  ref="viewBox" class="bg-color">
      <transition
         @after-enter="$vux.bus && $vux.bus.$emit('vux:after-view-enter')"
         :name="viewTransition" :css="!!direction">
@@ -23,13 +23,15 @@
           </keep-alive>
       </transition>
    </view-box>
-    <tabbar v-show="$route.path === '/' || $route.path === '/form'">
+    <tabbar v-show="isTabbarPage">
       <tabbar-item :selected="$route.path === '/'" :link="{path: '/'}">
-        <img slot="icon"  src="./assets/logo.png">
+        <img slot="icon"  src="../static/img/home.png">
+        <img slot="icon-active"  src="../static/img/home-active.png">
         <span slot="label">我要查找</span>
       </tabbar-item>
       <tabbar-item :selected="$route.path === '/from'" :link="{path: '/form'}">
-        <img slot="icon" src="./assets/logo.png">
+        <img slot="icon" src="../static/img/person.png">
+        <img slot="icon-active"  src="../static/img/person-active.png">
         <span slot="label">我要发布</span>
       </tabbar-item>
     </tabbar>
@@ -90,6 +92,9 @@ export default {
     viewTransition () {
       if (!this.direction) return ''
       return 'vux-pop-' + (this.direction === 'forward' ? 'in' : 'out')
+    },
+    isTabbarPage () {
+      return (this.$route.path === '/' || this.$route.path === '/form')
     }
   },
   methods: {
@@ -123,7 +128,7 @@ export default {
  }
  .weui-tab__panel {
    padding-top: 46px;
-   padding-bottom: 0 !important;
+  //  padding-bottom: 0 !important;
    overflow-x: hidden !important;
  }
  .weui-dialog {
@@ -172,35 +177,4 @@ export default {
    top: 0px;
    left: 70%;
  }
- .demo-icon-22 {
-  font-family: 'vux-demo';
-  font-size: 22px;
-  color: #888;
-  background: url('./assets/logo.png');
-}
-.weui-tabbar.vux-demo-tabbar {
-  height: 60px !important;
-  /** backdrop-filter: blur(10px);
-  background-color: none;
-  background: rgba(247, 247, 250, 0.5);**/
-}
-.vux-demo-tabbar .weui-bar__item_on .demo-icon-22 {
-  color: #F70968;
-}
-.vux-demo-tabbar .weui-tabbar_item.weui-bar__item_on .vux-demo-tabbar-icon-home {
-  color: rgb(53, 73, 94);
-}
-.demo-icon-22:before {
-  content: attr(icon);
-}
-.vux-demo-tabbar-component {
-  background-color: #F70968;
-  color: #fff;
-  border-radius: 7px;
-  padding: 0 4px;
-  line-height: 14px;
-}
-.weui-tabbar__icon + .weui-tabbar__label {
-  margin-top: 0 !important;
-}
 </style>

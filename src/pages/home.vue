@@ -2,8 +2,8 @@
   <div>
     <swiper loop auto :list="demo06_list" :index="demo06_index" @on-index-change="demo06_onIndexChange" :aspect-ratio="300/800" dots-position="center"></swiper>
     <div class="demo-list-box">
-      <flexbox :gutter="0" v-for="(list, index) in components" :key="index">
-        <flexbox-item :span="1/2" v-for="component in list" :key="component.name" class="cbox vux-1px-t vux-tap-active" @click.native="go(component.name)">
+      <flexbox :gutter="0" wrap="wrap" style="background:#efeff4;">
+        <flexbox-item style="background:#fff;" :span="1 / itemLength" v-for="component in list" :key="component.name" class="cbox vux-1px-t vux-tap-active" @click.native="go(component.name)">
           <div class="vux-1px-r cbox-inner">
             <!-- <span class="demo-icon demo-icon-big" v-html="component.icon" :style="{color: component.color}"></span> -->
             <img :src="component.icon" alt="">
@@ -18,7 +18,7 @@
 <script>
 import { Swiper, GroupTitle, SwiperItem, XButton, Divider, Flexbox, FlexboxItem } from 'vux'
 import logo from '../assets/logo.png'
-const itemLength = 2
+// 定义九宫格每行个数
 const componentss = [{
   name: 'item1', index: 1, icon: logo
 },
@@ -33,9 +33,6 @@ const componentss = [{
 },
 {
   name: 'item5', index: 5, icon: logo
-},
-{
-  name: 'item6', index: 6, icon: logo
 }]
 const baseList = [{
   url: 'javascript:',
@@ -93,26 +90,6 @@ export default {
       //   }
       // })
       _this.$router.push('/item/123/abc')
-    },
-    split (array) {
-      let chunks = []
-      let count = Math.ceil(array.length / itemLength)
-      while (count > 0) {
-        chunks.push(array.slice((count - 1) * itemLength, count * itemLength))
-        count--
-      }
-      chunks = chunks.reverse()
-      const lastList = chunks[chunks.length - 1]
-      const lastLength = lastList.length
-      if (lastLength < itemLength) {
-        for (let i = 0; i < itemLength - lastLength; i++) {
-          lastList.push({
-            name: '----',
-            icon: ''
-          })
-        }
-      }
-      return chunks
     }
   },
   data () {
@@ -120,7 +97,8 @@ export default {
       demo06_list: urlList,
       demo06_index: 0,
       swiperItemIndex: 1,
-      components: this.split(componentss)
+      itemLength: 5,
+      list: componentss
     }
   }
 }
