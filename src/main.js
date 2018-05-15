@@ -10,7 +10,6 @@ import axios from './tools/api'
 import dialog from './tools/dialog'
 import './tools/filter'
 import './tools/directive'
-
 Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)
 Vue.use(ConfirmPlugin)

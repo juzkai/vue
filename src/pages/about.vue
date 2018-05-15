@@ -8,6 +8,7 @@
 </template>
 <script>
 import { XButton, Divider } from 'vux'
+import { Event } from '../tools/event'
 export default {
   components: {
     XButton,
@@ -26,7 +27,8 @@ export default {
       this.$router.back()
     },
     backTwo () {
-      this.$router.go(-2)
+      // this.$router.go(-2)
+      Event.$emit('backHome', {vue: this, path: this.$route.path})
     }
   }
 }

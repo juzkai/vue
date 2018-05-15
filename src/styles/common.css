@@ -1,7 +1,6 @@
 
-.testDiv {
-    width: 100px;
-    height: 100px;
-    background: #fe6400;
-    color: #fff;
+.common-title {
+    position: fixed !important;
+    width: 100%;
+    z-index: 1000;
 }

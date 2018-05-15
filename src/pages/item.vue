@@ -70,6 +70,9 @@ export default {
         // 支付成功后的回调函数
         }
       })
+    },
+    toHome () {
+      console.log(111)
     }
   }
 }

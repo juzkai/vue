@@ -2,9 +2,11 @@
 import Vue from 'vue'
 export const Event = new Vue()
 
-Event.$on('backHome', (path) => {
-  const history = window.sessionStorage
-  const index = history.getItem(path)
-  console.log(index)
-//   Event.$router.go(index * (-1))
+// 返回到首页
+Event.$on('backHome', obj => {
+  let vue = obj.vue
+  let path = obj.path
+  let history = window.sessionStorage
+  let index = history.getItem(path)
+  vue.$router.go(index * (-1))
 })
