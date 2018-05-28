@@ -1,6 +1,6 @@
 
 import Vue from 'vue'
-export const Event = new Vue()
+const Event = new Vue()
 
 // 返回到首页
 Event.$on('backHome', obj => {
@@ -10,3 +10,4 @@ Event.$on('backHome', obj => {
   let index = history.getItem(path)
   vue.$router.go(index * (-1))
 })
+export default Event

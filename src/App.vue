@@ -99,10 +99,12 @@ export default {
   },
   methods: {
     toHome () {
+      // 在tabbar下存在问题 需要修改
       const path = this.$route.path
       const history = window.sessionStorage
       const toIndex = history.getItem(path)
       // history.clear()
+      console.log(toIndex)
       this.$router.go(toIndex * -1)
     }
   }

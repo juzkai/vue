@@ -18,6 +18,7 @@
 <script>
 import { XButton, Divider } from 'vux'
 import {APP_API} from '../tools/config'
+import Events from '../tools/event.js'
 export default {
   components: {
     XButton,
@@ -30,6 +31,9 @@ export default {
     // 每次都要请求的写到这里
     console.log(this.$route.params.id)
     console.log(this.$route.params.name)
+    Events.$on('listInfo', obj => {
+      console.log(obj)
+    })
   },
   methods: {
     about () {

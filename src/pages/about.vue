@@ -8,6 +8,7 @@
 </template>
 <script>
 import { XButton, Divider } from 'vux'
+import Events from '../tools/event.js'
 export default {
   components: {
     XButton,
@@ -23,6 +24,7 @@ export default {
     },
     backOne () {
       // this.$router.go(-1)
+      Events.$emit('listInfo', '111')
       this.$router.back()
     },
     backTwo () {
