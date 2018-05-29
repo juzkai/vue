@@ -12,6 +12,7 @@
         </flexbox-item>
       </flexbox>
     </div>
+    <div class="amin" style="">暂无数据</div>
   </div>
 </template>
 
@@ -66,8 +67,7 @@ export default {
     Flexbox,
     FlexboxItem
   },
-  ready () {
-
+  mounted () {
   },
   methods: {
     onSwiperItemIndexChange (index) {
@@ -129,5 +129,67 @@ export default {
 .demo-list-box {
   background-color: #fff;
   width: 100%;
+}
+.amin {
+  position: relative;
+  width:100px;
+  left: -100px;
+  line-height:40px;
+  height: 40px;
+  color: #fff;
+  border-radius: 20px;
+  background: linear-gradient(#242424, #666666);
+  background: -webkit-linear-gradient(#242424, #666666);
+  background: -moz-linear-gradient(#242424, #666666);
+  text-align:center;
+  animation: myAmin 2s;
+  -webkit-animation: myAmin 2s;
+  animation-iteration-count: 50;
+  -webkit-animation-iteration-count: 50;
+}
+@keyframes myAmin {
+  0% {
+    top: 0px;
+    left: -100px;
+  }
+  // 25% {
+  //   top: 0px;
+  //   left: 25%;
+  // }
+  // 50% {
+  //   top: 0px;
+  //   left: 50%;
+  //   margin-left: -50px;
+  // }
+  // 75% {
+  //   top: 0px;
+  //   left: 75%;
+  // }
+  100% {
+    top: 0px;
+    left: 100%;
+  }
+}
+@-webkit-keyframes myAmin {
+  0% {
+    top: 0px;
+    left: 0px;
+  }
+  // 25% {
+  //   top: 0px;
+  //   left: 25%;
+  // }
+  // 50% {
+  //   top: 0px;
+  //   left: 50%;
+  // }
+  // 75% {
+  //   top: 0px;
+  //   left: 75%;
+  // }
+  100% {
+    top: 0px;
+    left: 100%;
+  }
 }
 </style>
