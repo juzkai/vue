@@ -25,12 +25,12 @@
       </transition>
    </view-box>
     <tabbar v-show="isTabbarPage">
-      <tabbar-item :selected="$route.path === '/'" :link="{path: '/'}">
+      <tabbar-item :selected="isHomePage" :link="{path: '/home'}">
         <img slot="icon"  src="../static/img/home.png">
         <img slot="icon-active"  src="../static/img/home-active.png">
         <span slot="label">我要查找</span>
       </tabbar-item>
-      <tabbar-item :selected="$route.path === '/from'" :link="{path: '/form'}">
+      <tabbar-item :selected="isFormPage" :link="{path: '/form'}">
         <img slot="icon" src="../static/img/person.png">
         <img slot="icon-active"  src="../static/img/person-active.png">
         <span slot="label">我要发布</span>
@@ -82,6 +82,9 @@ export default {
     },
     isHomePage () {
       return this.$route.path === '/home'
+    },
+    isFormPage () {
+      return this.$route.path === '/form'
     },
     isTabbarPage () {
       return (this.$route.path === '/home' || this.$route.path === '/form')

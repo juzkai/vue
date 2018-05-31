@@ -2,14 +2,18 @@
 export const APP_ROUTE = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/home',
+    meta: {
+      componentName: '首页',
+      keepAlive: false // 缓存页面
+    }
   },
   {
     path: '/home',
     name: 'home',
     meta: {
       componentName: '首页',
-      keepAlive: true // 缓存页面
+      keepAlive: false // 缓存页面
     },
     component: resolve => { require(['../pages/home.vue'], resolve) }
   },
@@ -43,7 +47,7 @@ export const APP_ROUTE = [
   {
     path: '/list',
     name: 'list',
-    redirect: '/list/zhuang_huang',
+    redirect: '/list/scroll_list',
     meta: {
       componentName: '装潢',
       keepAlive: false
@@ -51,13 +55,13 @@ export const APP_ROUTE = [
     component: resolve => { require(['../pages/list.vue'], resolve) },
     children: [
       {
-        path: '/list/zhuang_huang',
-        name: 'zhuang_huang',
+        path: '/list/scroll_list',
+        name: 'scroll_list',
         meta: {
-          componentName: '装潢',
+          componentName: 'scroll_list',
           keepAlive: false
         },
-        component: resolve => { require(['../pages/zhuang_huang.vue'], resolve) }
+        component: resolve => { require(['../pages/scroll_list.vue'], resolve) }
       },
       {
         path: '/list/wa_gong',
@@ -67,6 +71,15 @@ export const APP_ROUTE = [
           keepAlive: false
         },
         component: resolve => { require(['../pages/wa_gong.vue'], resolve) }
+      },
+      {
+        path: '/list/zhuang_huang',
+        name: 'zhuang_huang',
+        meta: {
+          componentName: '装潢',
+          keepAlive: false
+        },
+        component: resolve => { require(['../pages/zhuang_huang.vue'], resolve) }
       }
     ]
   },
@@ -78,14 +91,5 @@ export const APP_ROUTE = [
       keepAlive: false
     },
     component: resolve => { require(['../pages/test.vue'], resolve) }
-  },
-  {
-    path: '/scroll_list',
-    name: 'scroll_list',
-    meta: {
-      componentName: 'better-scroll',
-      keepAlive: false
-    },
-    component: resolve => { require(['../pages/scroll_list.vue'], resolve) }
   }
 ]

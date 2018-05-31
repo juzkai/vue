@@ -1,3 +1,4 @@
+<!--copy from： https://github.com/didi/cube-ui -->
 <template>
   <div ref="wrapper" class="cube-scroll-wrapper">
     <div class="cube-scroll-content">
@@ -408,10 +409,10 @@ export default {
   padding: 22px 0;
   min-height: 1em;
 }
-.after-trigger {
-  /* padding: 19px 0;
-  margin-top: 5px; */
-}
+/* .after-trigger {
+  padding: 19px 0;
+  margin-top: 5px;
+} */
 .cube-scroll-content {
   position: relative;
   z-index: 1;
