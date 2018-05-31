@@ -7,13 +7,8 @@
   </div>
 </template>
 <script>
-import { XButton, Divider } from 'vux'
 import Events from '../tools/event.js'
 export default {
-  components: {
-    XButton,
-    Divider
-  },
   created () {
     console.log(this.$route.params.id)
     console.log(this.$route.params.name)

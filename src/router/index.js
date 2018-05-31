@@ -13,6 +13,7 @@ let isPush = false
 let endTime = Date.now()
 
 const router = new Router({
+  mode: 'history', // 去掉链接中的#
   routes: APP_ROUTE
 })
 

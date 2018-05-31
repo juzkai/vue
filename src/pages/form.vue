@@ -15,15 +15,7 @@
   </div>
 </template>
 <script>
-import { Divider, Group, XInput, Cell, XButton } from 'vux'
 export default {
-  components: {
-    Divider,
-    Group,
-    XInput,
-    Cell,
-    XButton
-  },
   data () {
     return {
       maskValue1: '',

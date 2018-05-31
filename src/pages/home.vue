@@ -1,83 +1,280 @@
 <template>
   <div>
-    <swiper loop auto :list="demo06_list" :index="demo06_index" @on-index-change="demo06_onIndexChange" :aspect-ratio="300/800" dots-position="center"></swiper>
-    <div class="demo-list-box">
+    <swiper loop auto :list="demo06_list" :index="demo06_index" @on-index-change="demo06_onIndexChange" :aspect-ratio="350/800" dots-position="center"></swiper>
+
+    <div class="demo-list-box" style="margin-bottom: 10px;">
       <flexbox :gutter="0" wrap="wrap" style="background:#efeff4;">
-        <flexbox-item style="background:#fff;" :span="1 / itemLength" v-for="component in list" :key="component.name" class="cbox vux-1px-t vux-tap-active" @click.native="go(component.name)">
+        <flexbox-item style="background:#fff;" :span="1 / itemLength" v-for="component in list" :key="component.name" class="cbox vux-1px-t vux-tap-active" @click.native="go(component.index)">
           <div class="vux-1px-r cbox-inner">
             <!-- <span class="demo-icon demo-icon-big" v-html="component.icon" :style="{color: component.color}"></span> -->
             <img :src="component.icon" alt="">
-            <p :style="{fontSize: component.name.length > 12 ? '12px' : ''}">{{component.name}}</p>
+            <p :style="{fontSize: component.name.length > 12 ? '12px' : ''}" ref="componentName">{{component.name}}</p>
           </div>
         </flexbox-item>
       </flexbox>
     </div>
-    <div class="amin" style="">暂无数据</div>
+    <!-- <grid :show-lr-borders="false" style="background:#fff;margin-bottom:10px;">
+      <grid-item  v-for="component in list" :key="component.name" :label="component.name">
+        <img slot="icon" :src="component.icon">
+      </grid-item>
+    </grid> -->
+    <div style="height:44px;" id="tab-list-lifo">
+     <sticky scroll-box="vux_view_box_body" :check-sticky-support="false" :offset="46">
+      <!-- <tab :line-width=2 v-model="tabIndex">
+          <tab-item class="vux-center" :selected="demo2 === tabIndex" v-for="item in tabSwiperList" @click="demo2 = tabIndex" :key="item.index">{{item}}</tab-item>
+      </tab> -->
+      <tab v-model="tabIndex">
+        <tab-item selected @on-item-click="onItemClick">最新发布</tab-item>
+        <tab-item @on-item-click="onItemClick">装潢</tab-item>
+        <tab-item @on-item-click="onItemClick">家政</tab-item>
+        <tab-item @on-item-click="onItemClick">同城运输</tab-item>
+        <tab-item @on-item-click="onItemClick">其他</tab-item>
+     </tab>
+     </sticky>
+    </div>
+    <div class="tab-content" v-if="tabIndex === 0">
+            <div class="list-wrap" v-for="(i, index) in 3" :key="index">
+                <div class="list-left">
+                    <div class="list-left-icon">
+                    </div>
+                </div>
+                <div class="list-right">
+                    <div>
+                        <span>admin</span>
+                        <button class="list-info-icon zhi-ding">置顶</button>
+                        <button class="list-info-icon hong-bao">红包</button>
+                    </div>
+                    <flexbox class="list-info">
+                        <flexbox-item :span="3">岗位</flexbox-item>
+                        <flexbox-item>装潢</flexbox-item>
+                    </flexbox>
+                    <flexbox class="list-info">
+                        <flexbox-item :span="3">行业年限</flexbox-item>
+                        <flexbox-item>3年</flexbox-item>
+                    </flexbox>
+                    <flexbox class="list-info">
+                        <flexbox-item :span="3">手机号</flexbox-item>
+                        <flexbox-item>18262283481</flexbox-item>
+                    </flexbox>
+                    <flexbox class="list-info" style="align-items:flex-start;">
+                        <flexbox-item :span="3">工作描述</flexbox-item>
+                        <flexbox-item>氨基酸的房间爱哦儿氨基酸等开了房间哦阿斯加德佛个今儿我if假按揭考虑到积分</flexbox-item>
+                    </flexbox>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" v-if="tabIndex === 1">
+            <div class="list-wrap" v-for="(i, index) in 3" :key="index">
+                <div class="list-left">
+                    <div class="list-left-icon">
+                    </div>
+                </div>
+                <div class="list-right">
+                    <div>
+                        <span>admin</span>
+                        <button class="list-info-icon zhi-ding">置顶</button>
+                        <button class="list-info-icon hong-bao">红包</button>
+                    </div>
+                    <flexbox class="list-info">
+                        <flexbox-item :span="3">岗位</flexbox-item>
+                        <flexbox-item>瓦工</flexbox-item>
+                    </flexbox>
+                    <flexbox class="list-info">
+                        <flexbox-item :span="3">行业年限</flexbox-item>
+                        <flexbox-item>3年</flexbox-item>
+                    </flexbox>
+                    <flexbox class="list-info">
+                        <flexbox-item :span="3">手机号</flexbox-item>
+                        <flexbox-item>18262283481</flexbox-item>
+                    </flexbox>
+                    <flexbox class="list-info" style="align-items:flex-start;">
+                        <flexbox-item :span="3">工作描述</flexbox-item>
+                        <flexbox-item>氨基酸的房间爱哦儿氨基酸等开了房间哦阿斯加德佛个今儿我if假按揭考虑到积分</flexbox-item>
+                    </flexbox>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" v-if="tabIndex === 2">
+            <div class="list-wrap" v-for="(i, index) in 3" :key="index">
+                <div class="list-left">
+                    <div class="list-left-icon">
+                    </div>
+                </div>
+                <div class="list-right">
+                    <div>
+                        <span>admin</span>
+                        <button class="list-info-icon zhi-ding">置顶</button>
+                        <button class="list-info-icon hong-bao">红包</button>
+                    </div>
+                    <flexbox class="list-info">
+                        <flexbox-item :span="3">岗位</flexbox-item>
+                        <flexbox-item>家政</flexbox-item>
+                    </flexbox>
+                    <flexbox class="list-info">
+                        <flexbox-item :span="3">行业年限</flexbox-item>
+                        <flexbox-item>3年</flexbox-item>
+                    </flexbox>
+                    <flexbox class="list-info">
+                        <flexbox-item :span="3">手机号</flexbox-item>
+                        <flexbox-item>18262283481</flexbox-item>
+                    </flexbox>
+                    <flexbox class="list-info" style="align-items:flex-start;">
+                        <flexbox-item :span="3">工作描述</flexbox-item>
+                        <flexbox-item>氨基酸的房间爱哦儿氨基酸等开了房间哦阿斯加德佛个今儿我if假按揭考虑到积分</flexbox-item>
+                    </flexbox>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" v-if="tabIndex === 3">
+            <div class="list-wrap" v-for="(i, index) in 3" :key="index">
+                <div class="list-left">
+                    <div class="list-left-icon">
+                    </div>
+                </div>
+                <div class="list-right">
+                    <div>
+                        <span>admin</span>
+                        <button class="list-info-icon zhi-ding">置顶</button>
+                        <button class="list-info-icon hong-bao">红包</button>
+                    </div>
+                    <flexbox class="list-info">
+                        <flexbox-item :span="3">岗位</flexbox-item>
+                        <flexbox-item>同城运输</flexbox-item>
+                    </flexbox>
+                    <flexbox class="list-info">
+                        <flexbox-item :span="3">行业年限</flexbox-item>
+                        <flexbox-item>3年</flexbox-item>
+                    </flexbox>
+                    <flexbox class="list-info">
+                        <flexbox-item :span="3">手机号</flexbox-item>
+                        <flexbox-item>18262283481</flexbox-item>
+                    </flexbox>
+                    <flexbox class="list-info" style="align-items:flex-start;">
+                        <flexbox-item :span="3">工作描述</flexbox-item>
+                        <flexbox-item>氨基酸的房间爱哦儿氨基酸等开了房间哦阿斯加德佛个今儿我if假按揭考虑到积分</flexbox-item>
+                    </flexbox>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" v-if="tabIndex === 4">
+            <div class="list-wrap" v-for="(i, index) in 3" :key="index">
+                <div class="list-left">
+                    <div class="list-left-icon">
+                    </div>
+                </div>
+                <div class="list-right">
+                    <div>
+                        <span>admin</span>
+                        <button class="list-info-icon zhi-ding">置顶</button>
+                        <button class="list-info-icon hong-bao">红包</button>
+                    </div>
+                    <flexbox class="list-info">
+                        <flexbox-item :span="3">岗位</flexbox-item>
+                        <flexbox-item>其他</flexbox-item>
+                    </flexbox>
+                    <flexbox class="list-info">
+                        <flexbox-item :span="3">行业年限</flexbox-item>
+                        <flexbox-item>3年</flexbox-item>
+                    </flexbox>
+                    <flexbox class="list-info">
+                        <flexbox-item :span="3">手机号</flexbox-item>
+                        <flexbox-item>18262283481</flexbox-item>
+                    </flexbox>
+                    <flexbox class="list-info" style="align-items:flex-start;">
+                        <flexbox-item :span="3">工作描述</flexbox-item>
+                        <flexbox-item>氨基酸的房间爱哦儿氨基酸等开了房间哦阿斯加德佛个今儿我if假按揭考虑到积分</flexbox-item>
+                    </flexbox>
+                </div>
+            </div>
+        </div>
   </div>
 </template>
 
 <script>
-import { Swiper, GroupTitle, SwiperItem, XButton, Divider, Flexbox, FlexboxItem } from 'vux'
 import logo from '../assets/logo.png'
-// 定义九宫格每行个数
+import slide1 from '../../static/img/is09af9m0.jpg'
+import slide2 from '../../static/img/rad600-02670750.jpg'
+import slide3 from '../../static/img/tg-cm27006269.jpg'
+import slide4 from '../../static/img/ul1319-6279.jpg'
+// 九宫格参数
 const componentss = [{
-  name: 'item1', index: 1, icon: logo
+  name: '装潢', index: 1, icon: logo
 },
 {
-  name: 'item2', index: 2, icon: logo
+  name: '家政', index: 2, icon: logo
 },
 {
-  name: 'item3', index: 3, icon: logo
+  name: '同城运输', index: 3, icon: logo
 },
 {
-  name: 'item4', index: 4, icon: logo
-},
-{
-  name: 'item5', index: 5, icon: logo
+  name: '其他', index: 4, icon: logo
 }]
 const baseList = [{
   url: 'javascript:',
-  img: 'https://static.vux.li/demo/1.jpg',
-  title: '送你一朵fua'
+  img: slide1,
+  title: '家政'
 }, {
   url: 'javascript:',
-  img: 'https://static.vux.li/demo/2.jpg',
-  title: '送你一辆车'
+  img: slide2,
+  title: '装潢'
 }, {
   url: 'javascript:',
-  img: 'https://static.vux.li/demo/3.jpg',
-  title: '送你一次旅行',
-  fallbackImg: 'https://static.vux.li/demo/3.jpg'
+  img: slide3,
+  title: '同城运输',
+  fallbackImg: slide4
 }]
 
 const urlList = baseList.map((item, index) => ({
-  url: 'http://m.baidu.com',
+  url: '',
   img: item.img,
   fallbackImg: item.fallbackImg,
-  title: `(可点击)${item.title}`
+  title: `${item.title}`
 }))
 
+const tabSwiperList = () => ['最新发布', '装潢', '家政', '同城运输', '其他']
+
 export default {
-  components: {
-    Swiper,
-    SwiperItem,
-    GroupTitle,
-    XButton,
-    Divider,
-    Flexbox,
-    FlexboxItem
+  data () {
+    return {
+      demo06_list: urlList,
+      demo06_index: 0,
+      swiperItemIndex: 1,
+      itemLength: 4,
+      list: componentss,
+      tabIndex: 0,
+      demo2: 0,
+      tabSwiperList: tabSwiperList(),
+      value: ''
+    }
+  },
+  created () {
   },
   mounted () {
   },
   methods: {
+    onItemClick () {
+    },
     onSwiperItemIndexChange (index) {
       console.log('demo item change', index)
     },
     demo06_onIndexChange (index) {
       this.demo06_index = index
     },
-    go (name) {
+    go (index) {
       let _this = this
+      if (index === 1) {
+        _this.$router.push('/list')
+        return
+      }
+      if (index === 2) {
+        _this.$router.push('/test')
+        return
+      }
+      if (index === 3) {
+        _this.$router.push('/scroll_list')
+        return
+      }
       // 显示
       // this.$vux.alert.show({
       //   title: '123',
@@ -90,15 +287,6 @@ export default {
       //   }
       // })
       _this.$router.push('/item/123/abc')
-    }
-  },
-  data () {
-    return {
-      demo06_list: urlList,
-      demo06_index: 0,
-      swiperItemIndex: 1,
-      itemLength: 5,
-      list: componentss
     }
   }
 }
@@ -130,66 +318,15 @@ export default {
   background-color: #fff;
   width: 100%;
 }
-.amin {
-  position: relative;
-  width:100px;
-  left: -100px;
-  line-height:40px;
-  height: 40px;
-  color: #fff;
-  border-radius: 20px;
-  background: linear-gradient(#242424, #666666);
-  background: -webkit-linear-gradient(#242424, #666666);
-  background: -moz-linear-gradient(#242424, #666666);
-  text-align:center;
-  animation: myAmin 2s;
-  -webkit-animation: myAmin 2s;
-  animation-iteration-count: 50;
-  -webkit-animation-iteration-count: 50;
+.tab-swiper {
+  background-color: #fff;
+  height: 500px;
 }
-@keyframes myAmin {
-  0% {
-    top: 0px;
-    left: -100px;
-  }
-  // 25% {
-  //   top: 0px;
-  //   left: 25%;
-  // }
-  // 50% {
-  //   top: 0px;
-  //   left: 50%;
-  //   margin-left: -50px;
-  // }
-  // 75% {
-  //   top: 0px;
-  //   left: 75%;
-  // }
-  100% {
-    top: 0px;
-    left: 100%;
-  }
+.vux-search-box {
+  position: fixed !important;
+  z-index: 1000;
+  height: 46px !important;
+  background: @theme-color !important;
 }
-@-webkit-keyframes myAmin {
-  0% {
-    top: 0px;
-    left: 0px;
-  }
-  // 25% {
-  //   top: 0px;
-  //   left: 25%;
-  // }
-  // 50% {
-  //   top: 0px;
-  //   left: 50%;
-  // }
-  // 75% {
-  //   top: 0px;
-  //   left: 75%;
-  // }
-  100% {
-    top: 0px;
-    left: 100%;
-  }
-}
+
 </style>

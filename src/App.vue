@@ -5,22 +5,23 @@
       :title="title"
       :transition="headerTransition"
      >
-       <a slot="right" style="position: relative;top: -4px;" v-if="$route.path === '/'">
-        <img src="../static/img/mailbox.png" alt="">
-        <badge class="badge-icon" text="8"></badge>
-      </a>
-      <a slot="right" style="position: relative;top: -2px;" v-if="$route.path !== '/'" @click="toHome()">
-        首页
-      </a>
      </x-header>
-    <view-box  ref="viewBox" class="bg-color">
+    <view-box  ref="viewBox" class="bg-color" :body-padding-bottom="isTabbarPage ? '46px' : 0">
      <transition
+        v-if="$route.meta.keepAlive"
         @after-enter="$vux.bus && $vux.bus.$emit('vux:after-view-enter')"
         :name="viewTransition" :css="!!direction">
           <!-- 注意使用了keep-alive缓存全部页面 对于首次请求写到 created里面 对于每次进入页面都要请求的 写到 activated 里面 -->
           <keep-alive>
             <router-view class="router-view"></router-view>
           </keep-alive>
+      </transition>
+      <transition
+        v-if="!$route.meta.keepAlive"
+        @after-enter="$vux.bus && $vux.bus.$emit('vux:after-view-enter')"
+        :name="viewTransition" :css="!!direction">
+          <!-- 注意使用了keep-alive缓存全部页面 对于首次请求写到 created里面 对于每次进入页面都要请求的 写到 activated 里面 -->
+          <router-view class="router-view"></router-view>
       </transition>
    </view-box>
     <tabbar v-show="isTabbarPage">
@@ -40,21 +41,8 @@
 </template>
 
 <script>
-import { XHeader, Actionsheet, ButtonTab, ButtonTabItem, ViewBox, Tabbar, Loading, Badge, TabbarItem, XImg } from 'vux'
 import { mapState } from 'vuex'
 export default {
-  components: {
-    XHeader,
-    Actionsheet,
-    ButtonTab,
-    ButtonTabItem,
-    ViewBox,
-    Tabbar,
-    Loading,
-    Badge,
-    TabbarItem,
-    XImg
-  },
   data () {
     return {
       showMenus: false,
@@ -72,7 +60,7 @@ export default {
     }),
     leftOptions () {
       return {
-        showBack: this.$route.path !== '/',
+        showBack: this.$route.path !== '/' && this.$route.path !== '/home',
         backText: ''
       }
     },
@@ -86,15 +74,17 @@ export default {
       return this.direction === 'forward' ? 'vux-header-fade-in-right' : 'vux-header-fade-in-left'
     },
     title () {
-      document.title = this.$route.name
-      return this.$route.name
+      return this.$route.meta.componentName
     },
     viewTransition () {
       if (!this.direction) return ''
       return 'vux-pop-' + (this.direction === 'forward' ? 'in' : 'out')
     },
+    isHomePage () {
+      return this.$route.path === '/home'
+    },
     isTabbarPage () {
-      return (this.$route.path === '/' || this.$route.path === '/form')
+      return (this.$route.path === '/home' || this.$route.path === '/form')
     }
   },
   methods: {
@@ -113,6 +103,7 @@ export default {
 
 <style lang="less">
 @import '~vux/src/styles/reset.less';
+@import './styles/common.css';
  html, body {
     height: 100%;
     width: 100%;
@@ -125,8 +116,8 @@ export default {
   }
  .bg-color {
    background-color: @bg-color;
-   -webkit-overflow-scrolling: touch; // ios5+
-   -ms-overflow-style: -ms-autohiding-scrollbar;
+  //  -webkit-overflow-scrolling: touch; // ios5+
+  //  -ms-overflow-style: -ms-autohiding-scrollbar;
  }
  .weui-tab__panel {
    padding-top: 46px;
@@ -142,37 +133,8 @@ export default {
  .weui-dialog__bd {
    min-height: 30px;
  }
- .router-view {
-   width: 100%;
-   top: 46px;
- }
- .vux-pop-out-enter-active,
- .vux-pop-out-leave-active,
- .vux-pop-in-enter-active,
- .vux-pop-in-leave-active {
-   will-change: transform;
-   transition: all 500ms;
-   height: 100%;
-   top: 46px;
-   position: absolute;
-   backface-visibility: hidden;
-   perspective: 1000;
- }
- .vux-pop-out-enter {
-   opacity: 0;
-   transform: translate3d(-100%, 0, 0);
- }
- .vux-pop-out-leave-active {
-   opacity: 0;
-   transform: translate3d(100%, 0, 0);
-}
- .vux-pop-in-enter {
-   opacity: 0;
-   transform: translate3d(100%, 0, 0);
- }
- .vux-pop-in-leave-active {
-   opacity: 0;
-   transform: translate3d(-100%, 0, 0);
+ .weui-tabbar{
+   z-index: 9999 !important;
  }
  .badge-icon {
    position: absolute;

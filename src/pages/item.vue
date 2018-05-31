@@ -16,14 +16,9 @@
   </div>
 </template>
 <script>
-import { XButton, Divider } from 'vux'
 import {APP_API} from '../tools/config'
 import Events from '../tools/event.js'
 export default {
-  components: {
-    XButton,
-    Divider
-  },
   created () {
     // 首次请求写到这里
   },

@@ -1,0 +1,43 @@
+<template>
+    <div>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+        <p>111aaaaaaaaaaaaaaa</p>
+    </div>
+</template>
+<script>
+export default {
+  created () {
+    console.log(this.$route.params.data)
+  },
+  activated () {
+    console.log(this.$route.params.data)
+  }
+}
+</script>

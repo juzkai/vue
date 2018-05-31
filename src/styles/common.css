@@ -4,3 +4,110 @@
     width: 100%;
     z-index: 1000;
 }
+.tab-content {
+    width: 100%;
+}
+.list-wrap {
+    width: 100%;
+    margin-top: 5px;
+    background: #fff;
+    display: flex;
+}
+.list-left {
+    width: 50px;
+    height: 100%;
+}
+.list-left-icon {
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    margin: 5px auto;
+    background: url('../../static/img/20171116160137.jpg');
+    background-size: 100% 100%;
+}
+.list-right {
+    flex: 1;
+    height: 100%;
+    padding: 5px;
+}
+.list-info {
+    margin-top: 3px;
+    font-size: 14px;
+}
+.list-info-icon {
+    width:40px;
+    border:none;
+    color:#fff;
+    padding:2px;
+}
+.zhi-ding {
+    background: #1AAD19;
+}
+.hong-bao {
+    background: red;
+}
+
+.fade-in-enter-active, .fade-out-enter-active, .fade-in-leave-active, .fade-out-leave-active  {
+    will-change: transform;
+    transition: all 600ms;
+    height: 100%;
+    position: relative;
+    backface-visibility: hidden;
+    perspective: 1000;
+ }
+  .fade-out-enter {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+  .fade-out-leave-active {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+ }
+  .fade-in-enter {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+  .fade-in-leave-active {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+  .weui-search-bar:after {
+    border-bottom: none !important;
+  }
+  .weui-search-bar:before {
+    border-top: none !important;
+  }
+
+
+  .vux-pop-out-enter-active,
+ .vux-pop-out-leave-active,
+ .vux-pop-in-enter-active,
+ .vux-pop-in-leave-active {
+   will-change: transform;
+   transition: all 300ms;
+   height: 100%;
+   top: 46px;
+   position: absolute;
+   backface-visibility: hidden;
+   perspective: 1000;
+ }
+ .vux-pop-out-enter {
+   opacity: 0;
+   transform: translate3d(-100%, 0, 0);
+ }
+ .vux-pop-out-leave-active {
+   opacity: 0;
+   transform: translate3d(100%, 0, 0);
+}
+ .vux-pop-in-enter {
+   opacity: 0;
+   transform: translate3d(100%, 0, 0);
+ }
+ .vux-pop-in-leave-active {
+   opacity: 0;
+   transform: translate3d(-100%, 0, 0);
+ }
+ .router-view {
+    width: 100%;
+    top: 46px;
+  }
