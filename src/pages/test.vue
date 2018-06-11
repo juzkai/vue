@@ -1,5 +1,6 @@
 <template>
   <div>
+    <span>----------------{{$route.query.id}}</span>
     <div class="wrapper" ref="wrapper">
         <ul class="content">
           <li v-for="(item, index) in data" :key="index">{{item}}</li>
@@ -20,6 +21,7 @@ export default {
     }
   },
   created () {
+    console.log(this.$route.query.id)
   },
   mounted () {
     this.$nextTick(() => {

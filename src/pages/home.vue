@@ -268,11 +268,7 @@ export default {
         return
       }
       if (index === 2) {
-        _this.$router.push('/test')
-        return
-      }
-      if (index === 3) {
-        _this.$router.push('/scroll_list')
+        _this.$router.push({path: '/test', query: {id: 1, name: 2}})
         return
       }
       // 显示

@@ -37,11 +37,18 @@ export default {
   },
   created () {
     // 首次请求写到这里
-    console.log(this.$router)
   },
-  activated () {
-    console.log(111)
-    // 每次进入页面都会执行（会忽略keep-alive的页面缓存）
+  mounted () {
+    let path = this.$route.path
+    if (path === '/list/zhuang_huang') {
+      this.$nextTick(() => {
+        this.tabActive = 1
+      })
+    } else if (path === '/list/wa_gong') {
+      this.$nextTick(() => {
+        this.tabActive = 2
+      })
+    }
   },
   methods: {
     onItemClick () {

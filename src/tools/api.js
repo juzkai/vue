@@ -80,6 +80,14 @@ const toQueryPair = (key, value) => {
 }
 export default {
   post: (url, data) => {
+    if (!navigator.onLine) {
+      Vue.$vux.toast.show({
+        title: APP_TITLE,
+        type: 'warn',
+        text: '网络异常'
+      })
+      return
+    }
     return instance.post(url, toBodyString(data))
       .then(response => {
         return response
@@ -89,6 +97,14 @@ export default {
       })
   },
   get: (url) => {
+    if (!navigator.onLine) {
+      Vue.$vux.toast.show({
+        title: APP_TITLE,
+        type: 'warn',
+        text: '网络异常'
+      })
+      return
+    }
     return instance.get(url)
       .then(response => {
         return response

@@ -8,8 +8,9 @@
             :listenScroll="true"
             :options="contentScrollOptions"
             @pulling-up="onPullingUp">
-            <ul class="imgs-wrapper" style="padding-top:90px;">
-              <li v-for="(item, index) in content" :key="index" class="list-wrap">
+            <div class="imgs-wrapper" style="padding-top:90px;">
+              <div v-for="(item, index) in content" :key="index">
+                <div  class="list-wrap">
                     <div class="list-left">
                         <div class="list-left-icon">
                         </div>
@@ -37,8 +38,9 @@
                             <flexbox-item>氨基酸的房间爱哦儿氨基酸等开了房间哦阿斯加德佛个今儿我if假按揭考虑到积分</flexbox-item>
                         </flexbox>
                     </div>
-              </li>
-            </ul>
+                  </div>
+              </div>
+            </div>
           </better-scroll>
         </div>
     </div>
@@ -46,6 +48,7 @@
 </template>
 <script>
 import betterScroll from '../components/scroll'
+import itemList from '../components/item-list'
 const imgs = [
   {
     url: 'http://om0jxp12h.bkt.clouddn.com/toutiao_12.JPG'
@@ -59,7 +62,8 @@ const imgs = [
 ]
 export default {
   components: {
-    betterScroll
+    betterScroll,
+    itemList
   },
   data () {
     return {
@@ -71,7 +75,6 @@ export default {
     }
   },
   activated () {
-    console.log(this.$refs.tabActive)
   },
   methods: {
     onPullingUp () {

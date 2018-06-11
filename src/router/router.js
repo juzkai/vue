@@ -58,7 +58,7 @@ export const APP_ROUTE = [
         path: '/list/scroll_list',
         name: 'scroll_list',
         meta: {
-          componentName: 'scroll_list',
+          componentName: '装潢',
           keepAlive: false
         },
         component: resolve => { require(['../pages/scroll_list.vue'], resolve) }
@@ -67,7 +67,7 @@ export const APP_ROUTE = [
         path: '/list/wa_gong',
         name: 'wa_gong',
         meta: {
-          componentName: '瓦工',
+          componentName: '装潢',
           keepAlive: false
         },
         component: resolve => { require(['../pages/wa_gong.vue'], resolve) }

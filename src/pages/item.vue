@@ -12,7 +12,6 @@
     <x-button @click.native="about()">go to about page</x-button>
     <x-button @click.native="getData()">请求数据</x-button>
     <x-button @click.native="wxInit()">微信</x-button>
-    <div class="testDiv">123</div>
   </div>
 </template>
 <script>
@@ -21,11 +20,11 @@ import Events from '../tools/event.js'
 export default {
   created () {
     // 首次请求写到这里
+    console.log(this.$route.params.id)
+    console.log(this.$route.params.name)
   },
   activated () {
     // 每次都要请求的写到这里
-    console.log(this.$route.params.id)
-    console.log(this.$route.params.name)
     Events.$on('listInfo', obj => {
       console.log(obj)
     })

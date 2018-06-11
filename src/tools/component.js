@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import {XHeader, Actionsheet, ButtonTab, ButtonTabItem, ViewBox, Tabbar, Loading, Badge, TabbarItem, TabItem, XImg, XButton, Divider, Group, XInput, Cell, Sticky, Tab, Swiper, SwiperItem, Grid, GridItem, Flexbox, FlexboxItem, Checker, CheckerItem, Search, Scroller, LoadMore} from 'vux'
+import {XHeader, Actionsheet, ButtonTab, ButtonTabItem, ViewBox, Tabbar, Loading, Badge, TabbarItem, TabItem, XImg, XButton, Divider, Group, XInput, Cell, Sticky, Tab, Swiper, SwiperItem, Grid, GridItem, Flexbox, FlexboxItem, Checker, CheckerItem, Search, Scroller, LoadMore, Datetime} from 'vux'
 
 Vue.component('x-header', XHeader)
 Vue.component('actionsheet', Actionsheet)
@@ -31,3 +31,4 @@ Vue.component('checker-item', CheckerItem)
 Vue.component('search', Search)
 Vue.component('scroller', Scroller)
 Vue.component('load-more', LoadMore)
+Vue.component('datetime', Datetime)
