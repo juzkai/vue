@@ -22,7 +22,7 @@ export const APP_ROUTE = [
     name: 'item',
     meta: {
       componentName: '列表',
-      keepAlive: false // 不缓存页面
+      keepAlive: true // 不缓存页面
     },
     component: resolve => { require(['../pages/item.vue'], resolve) }
   },

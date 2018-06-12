@@ -25,8 +25,13 @@ export default {
   },
   activated () {
     // 每次都要请求的写到这里
+    // Events.$on('listInfo', obj => {
+    //   console.log('listInfo' + obj)
+    // })
+  },
+  mounted () {
     Events.$on('listInfo', obj => {
-      console.log(obj)
+      console.log('listInfo' + obj)
     })
   },
   methods: {

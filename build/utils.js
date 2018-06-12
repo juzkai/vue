@@ -47,6 +47,7 @@ exports.cssLoaders = function (options) {
     if (options.extract) {
       return ExtractTextPlugin.extract({
         use: loaders,
+        publicPath: '../../', // 打包后 static中图片不展示的问题（css）
         fallback: 'vue-style-loader'
       })
     } else {
