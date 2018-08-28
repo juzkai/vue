@@ -4,10 +4,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--[if lte IE 8]>
+      <div style="position: absolute;width: 100%;left: 0;top: 67px;line-height: 30px;background: red;z-index: 100;text-align: center;color: #ffffff;">当前IE版本过低，为了不影响您的使用，请升级到IE10及以上浏览器，或最新版的谷歌、火狐等浏览器。</div>
+    <![endif]-->
     <title>vuepro</title>
   </head>
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <!-- <script type="text/javascript">
+    function handleScroll () {
+        // var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
+        var scrollTop = document.getElementById('vux_view_box_body').scrollTop
+        console.log(scrollTop)
+      }
+      window.addEventListener('scroll', handleScroll, true)
+      
+    </script> -->
   </body>
 </html>

@@ -110,7 +110,8 @@ export default {
  html, body {
     height: 100%;
     width: 100%;
-    overflow-x: hidden;
+    // overflow-x: hidden;
+    overflow: visible;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;

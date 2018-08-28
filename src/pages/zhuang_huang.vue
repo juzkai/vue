@@ -7,6 +7,7 @@
             :data="content"
             :listenScroll="true"
             :options="contentScrollOptions"
+            @pulling-down="onPullingDown"
             @pulling-up="onPullingUp">
             <div class="imgs-wrapper" style="padding-top:90px;">
               <div v-for="(item, index) in content" :key="index">
@@ -49,6 +50,7 @@
 <script>
 import betterScroll from '../components/scroll'
 import itemList from '../components/item-list'
+let cnt = 1
 const imgs = [
   {
     url: 'http://om0jxp12h.bkt.clouddn.com/toutiao_12.JPG'
@@ -69,8 +71,13 @@ export default {
     return {
       content: imgs.slice(),
       contentScrollOptions: {
-        pullUpLoad: true
+        pullUpLoad: true,
+        pullDownRefresh: {
+          threshold: 60,
+          stopTime: 100
+        }
       },
+      secondStop: 0,
       tabActive: 0
     }
   },
@@ -80,6 +87,12 @@ export default {
     onPullingUp () {
       setTimeout(() => {
         this.content = this.content.concat(imgs)
+      }, 2000)
+    },
+    onPullingDown () {
+      setTimeout(() => {
+        this.content.unshift(imgs[cnt++ % 3])
+        this.$refs.contentScroll.scrollTo(0, this.secondStop, 300)
       }, 2000)
     }
   }

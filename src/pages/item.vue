@@ -8,6 +8,17 @@
     <x-button :gradients="['#FF5E3A', '#FF9500']" @click.native="toastIcon('warn')">toast with warn icon</x-button>
     <x-button :gradients="['#FF5E3A', '#FF9500']" @click.native="promptMsg('warn')">prompt</x-button>
     <x-button type="warn" disabled>reset</x-button>
+    <x-button type="warn" disabled>reset</x-button>
+    <x-button type="warn" disabled>reset</x-button>
+    <x-button type="warn" disabled>reset</x-button>
+    <x-button type="warn" disabled>reset</x-button>
+    <x-button type="warn" disabled>reset</x-button>
+    <x-button type="warn" disabled>reset</x-button>
+    <x-button type="warn" disabled>reset</x-button>
+    <x-button type="warn" disabled>reset</x-button>
+    <x-button type="warn" disabled>reset</x-button>
+    <x-button type="warn" disabled>reset</x-button>
+    <x-button type="warn" disabled>reset</x-button>
     <x-button disabled>theme default</x-button>
     <x-button @click.native="about()">go to about page</x-button>
     <x-button @click.native="getData()">请求数据</x-button>
@@ -24,17 +35,31 @@ export default {
     console.log(this.$route.params.name)
   },
   activated () {
-    // 每次都要请求的写到这里
-    // Events.$on('listInfo', obj => {
-    //   console.log('listInfo' + obj)
-    // })
+  },
+  beforeRouteLeave (to, from, next) {
+    let position = document.getElementById('vux_view_box_body').scrollTop
+    if (to.path === '/home') {
+      from.meta.position = 0
+    } else {
+      from.meta.position = position
+    }
+    next()
   },
   mounted () {
+    setTimeout(() => {
+      let position = this.$route.meta.position || 0
+      document.getElementById('vux_view_box_body').scrollTo(0, position)
+    }, 400)
     Events.$on('listInfo', obj => {
       console.log('listInfo' + obj)
     })
   },
   methods: {
+    handleScroll () {
+      // var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      var scrollTop = document.getElementById('vux_view_box_body').scrollTop
+      console.log(scrollTop)
+    },
     about () {
       this.dialog.confirmMsg('是否跳转?', () => this.$router.push('/about/12'))
       // this.$router.push('/about/12')

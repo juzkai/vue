@@ -1,11 +1,11 @@
-
+// keepAlive: false 缓存页面 true 缓存页面
 export const APP_ROUTE = [
   {
     path: '/',
     redirect: '/home',
     meta: {
       componentName: '首页',
-      keepAlive: false // 缓存页面
+      keepAlive: false
     }
   },
   {
@@ -13,7 +13,7 @@ export const APP_ROUTE = [
     name: 'home',
     meta: {
       componentName: '首页',
-      keepAlive: false // 缓存页面
+      keepAlive: false
     },
     component: resolve => { require(['../pages/home.vue'], resolve) }
   },
@@ -22,7 +22,7 @@ export const APP_ROUTE = [
     name: 'item',
     meta: {
       componentName: '列表',
-      keepAlive: true // 不缓存页面
+      keepAlive: false
     },
     component: resolve => { require(['../pages/item.vue'], resolve) }
   },
@@ -50,7 +50,7 @@ export const APP_ROUTE = [
     redirect: '/list/scroll_list',
     meta: {
       componentName: '装潢',
-      keepAlive: false
+      keepAlive: true
     },
     component: resolve => { require(['../pages/list.vue'], resolve) },
     children: [

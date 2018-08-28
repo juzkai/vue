@@ -69,7 +69,7 @@ function tip (msg, componentName) {
 const COMPONENT_NAME = 'cube-scroll'
 const DIRECTION_H = 'horizontal'
 const DIRECTION_V = 'vertical'
-const DEFAULT_REFRESH_TXT = 'Refresh success'
+const DEFAULT_REFRESH_TXT = '刷新成功'
 const PULL_DOWN_ELEMENT_INITIAL_HEIGHT = -50
 const EVENT_CLICK = 'click'
 const EVENT_PULLING_DOWN = 'pulling-down'
@@ -331,13 +331,13 @@ export default {
     _pullDownScrollHandle (pos) {
       if (this.beforePullDown) {
         this.bubbleY = Math.max(0, pos.y + PULL_DOWN_ELEMENT_INITIAL_HEIGHT)
-        this.pullDownStyle = `top:${Math.min(
+        this.pullDownStyle = `top:${Math.max(
           pos.y + PULL_DOWN_ELEMENT_INITIAL_HEIGHT,
           10
         )}px`
       } else {
         this.bubbleY = 0
-        this.pullDownStyle = `top:${Math.min(pos.y - 50, 10)}px`
+        this.pullDownStyle = `top:${Math.max(pos.y - PULL_DOWN_ELEMENT_INITIAL_HEIGHT - 10, 10)}px`
       }
     },
     _onPullUpLoad () {
